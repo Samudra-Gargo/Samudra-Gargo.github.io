@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Samudra Gargo Bhattacharya | Electrical & Computer Engineering</title>
-<meta name="description" content="Electrical and computer engineering portfolio: 48 V inverter motor controller, STM32 and RTOS firmware, voice-controlled drone, RISC-V core. Purdue University Northwest, May 2027.">
+<meta name="description" content="Electrical and computer engineering portfolio: 48 V inverter motor controller, STM32 and RTOS firmware, voice-controlled drone, RISC-V core, Siemens PLC programming. Purdue University Northwest, May 2027.">
 <meta property="og:title" content="Samudra Gargo Bhattacharya">
 <meta property="og:description" content="Power electronics, embedded firmware, and hardware test. Purdue University Northwest, May 2027.">
 <meta property="og:image" content="https://raw.githubusercontent.com/Samudra-Gargo/Motor_Controller/main/Shell_team.png">
@@ -62,6 +62,17 @@ main .wrap{display:grid;gap:0}
 figure{margin:0;display:grid;gap:6px}
 figcaption{font-size:14px;color:var(--muted)}
 .photo{border-radius:8px;width:100%;max-width:100%;height:auto;border:1px solid var(--line)}
+.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.gallery figure{gap:6px}
+.gallery button{padding:0;border:1px solid var(--line);border-radius:8px;background:var(--surface);cursor:zoom-in;overflow:hidden;aspect-ratio:4/3;max-width:100%;display:block;width:100%}
+.gallery button img{width:100%;height:100%;object-fit:cover;display:block}
+.gallery figcaption{font-size:13.5px;line-height:1.4}
+.story{border-left:3px solid var(--accent);padding:4px 0 4px 14px;color:var(--fg);max-width:66ch}
+.certs{display:grid;gap:10px;margin:0;padding:0;list-style:none}
+.certs li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 16px;border-bottom:1px dashed var(--line);padding-bottom:8px}
+.certs .who{font:500 13px var(--mono);color:var(--muted);white-space:nowrap}
+.certs small{grid-column:1/-1;color:var(--muted);font-size:14.5px}
+.ladder{font:500 13px/1.5 var(--mono);background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:12px 14px;overflow-x:auto;white-space:pre;margin:0}
 .sheets{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
 .sheets button{padding:0;border:1px solid var(--line);border-radius:6px;background:#fff;cursor:zoom-in;overflow:hidden;aspect-ratio:510/660;max-width:100%}
 .sheets img{width:100%;height:100%;object-fit:contain;display:block}
@@ -80,7 +91,7 @@ dialog{border:0;padding:0;background:transparent;max-width:min(92vw,900px)}
 dialog::backdrop{background:rgba(0,0,0,.7)}
 dialog img{width:100%;height:auto;background:#fff;border-radius:6px;display:block}
 dialog button{margin-top:8px;font:600 14px var(--body);background:var(--surface);color:var(--fg);border:1px solid var(--line);border-radius:6px;padding:6px 12px;cursor:pointer}
-@media (max-width:720px){.entry{grid-template-columns:1fr;gap:12px;padding-block:32px}.sheets{grid-template-columns:repeat(2,minmax(0,1fr))}.skills dl{grid-template-columns:1fr;gap:2px}.skills dd{margin-bottom:10px}}
+@media (max-width:720px){.gallery{grid-template-columns:repeat(2,minmax(0,1fr))}.certs li{grid-template-columns:1fr}.certs .who{white-space:normal}.entry{grid-template-columns:1fr;gap:12px;padding-block:32px}.sheets{grid-template-columns:repeat(2,minmax(0,1fr))}.skills dl{grid-template-columns:1fr;gap:2px}.skills dd{margin-bottom:10px}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
@@ -125,6 +136,17 @@ dialog button{margin-top:8px;font:600 14px var(--body);background:var(--surface)
         <li>Drew brushed and brushless controller schematics and full electrical schematics for two vehicles: battery, contactor, controller, hub motor and throttle.</li>
         <li>Now: running control tasks on an RTOS and adding Hall-effect current sensing for real-time current monitoring.</li>
       </ul>
+      <p class="story">The first drive on our own controller ended fast: road vibration shook a gate-driver wire loose from the breadboard prototype, switching failed and the fuse blew. That moved the design onto a proper PCB with solid connectors and real heatsinking, which is what races now.</p>
+      <div class="gallery">
+        <figure><button type="button" data-src="photos/gate-driver-test.jpg" data-alt="Gate-driver test setup on a breadboard with probe clips on the MOSFET stage"><img src="photos/gate-driver-test.jpg" alt="Gate-driver test setup on a breadboard with probe clips on the MOSFET stage" loading="lazy"></button><figcaption>Gate-driver bring-up: validating gate signals and safe MOSFET switching.</figcaption></figure>
+        <figure><button type="button" data-src="photos/gate-driver-scope.jpg" data-alt="Oscilloscope and bench supply during gate-driver testing"><img src="photos/gate-driver-scope.jpg" alt="Oscilloscope and bench supply during gate-driver testing" loading="lazy"></button><figcaption>Scope checks on gate drive before the power stage saw full voltage.</figcaption></figure>
+        <figure><button type="button" data-src="photos/controller-prototype.jpg" data-alt="Early motor-controller prototype board with gate drivers and wiring"><img src="photos/controller-prototype.jpg" alt="Early motor-controller prototype board with gate drivers and wiring" loading="lazy"></button><figcaption>First working prototype that spun the BLDC motor.</figcaption></figure>
+        <figure><button type="button" data-src="photos/controller-heatsink.jpg" data-alt="Rebuilt controller board with a heatsink, mounted in the vehicle"><img src="photos/controller-heatsink.jpg" alt="Rebuilt controller board with a heatsink, mounted in the vehicle" loading="lazy"></button><figcaption>PCB rebuild with heatsinking for real current, not just the bench.</figcaption></figure>
+        <figure><button type="button" data-src="photos/controller-in-vehicle.jpg" data-alt="Motor-controller PCBs wired into the vehicle electronics bay"><img src="photos/controller-in-vehicle.jpg" alt="Motor-controller PCBs wired into the vehicle electronics bay" loading="lazy"></button><figcaption>Controller boards integrated in the car for the 2026 season.</figcaption></figure>
+        <figure><button type="button" data-src="photos/wattmeter-install.jpg" data-alt="Samudra installing a wattmeter on the Shell Eco-Marathon vehicle"><img src="photos/wattmeter-install.jpg" alt="Samudra installing a wattmeter on the Shell Eco-Marathon vehicle" loading="lazy"></button><figcaption>Installing a wattmeter / joule meter to check voltage drop and live power draw.</figcaption></figure>
+        <figure><button type="button" data-src="photos/team-vehicle.jpg" data-alt="The PNW team with the car at the Shell Eco-Marathon"><img src="photos/team-vehicle.jpg" alt="The PNW team with the car at the Shell Eco-Marathon" loading="lazy"></button><figcaption>2026 Shell Eco-Marathon: passed technical inspection.</figcaption></figure>
+        <figure><button type="button" data-src="photos/days-of-discovery.jpg" data-alt="Samudra presenting research posters at Purdue Northwest Days of Discovery"><img src="photos/days-of-discovery.jpg" alt="Samudra presenting research posters at Purdue Northwest Days of Discovery" loading="lazy"></button><figcaption>Presenting the controller and drone research at PNW Days of Discovery.</figcaption></figure>
+      </div>
       <figure>
         <img class="photo" src="https://raw.githubusercontent.com/Samudra-Gargo/Motor_Controller/main/Shell_team.png" alt="The PNW Shell Eco-Marathon team posing with their black, teardrop-shaped car in the workshop" width="845" height="602">
         <figcaption>The PNW Shell Eco-Marathon team and car.</figcaption>
@@ -216,13 +238,76 @@ dialog button{margin-top:8px;font:600 14px var(--body);background:var(--surface)
     </div>
   </article>
 
+
+  <article class="entry" id="automation">
+    <aside>
+      <div class="when">Sep – Oct 2026</div>
+      <div class="label">Coursework · Self-directed</div>
+      <div class="tags"><span class="tag">Siemens S7-1200</span><span class="tag">TIA Portal</span><span class="tag">Ladder logic</span><span class="tag">Revit</span></div>
+    </aside>
+    <div class="content">
+      <h2>Industrial controls: Siemens PLC programming</h2>
+      <p>I wanted to see how the logic I write in firmware is done on a factory floor. Different syntax, same questions: what has to be true before an output energizes, what happens when a sensor fails, and what stops two conflicting actions from happening at once.</p>
+      <ul>
+        <li>Ladder-logic programs for the S7-1200 in TIA Portal (STEP 7): start/stop with seal-in latching, interlocks, timers, counters, comparisons and fault handling.</li>
+        <li>Control scenarios: conveyor sequencing, tank-level monitoring and motor start/stop with safe machine sequencing.</li>
+        <li>Next: HMIs, industrial communication and controls troubleshooting.</li>
+      </ul>
+      <pre class="ladder" aria-label="Ladder logic example: motor start/stop with seal-in and overload interlock">  Start     Stop    Overload           Motor
+--| |--+---|/|-------|/|---------------( )--
+       |
+  Motor|
+--| |--+           (seal-in keeps the motor running after Start is released)</pre>
+      <h3 style="font-size:19px">Building information modeling</h3>
+      <p>Completed BIM Fundamentals (Coursera, Oct 2026): how a shared Revit model coordinates architectural, structural and MEP design, which is where the electrical and controls side of a building gets planned.</p>
+    </div>
+  </article>
+
+  <article class="entry" id="teaching">
+    <aside>
+      <div class="when">2025 – 2026</div>
+      <div class="label">IEEE · IEEE-HKN</div>
+      <div class="tags"><span class="tag">KiCad</span><span class="tag">Teaching</span><span class="tag">Outreach</span></div>
+    </aside>
+    <div class="content">
+      <h2>Teaching hardware: PCB workshop and STEM outreach</h2>
+      <ul>
+        <li>Ran a hands-on KiCad workshop: why PCBs and layers matter, schematic capture, layout, Gerber generation and validation, and packaging files for fabrication. Students who stayed soldered and took home a working LED-chaser board.</li>
+        <li>At an IEEE STEM AI outreach event, demoed speech-to-text with OpenAI Whisper for high school students and walked through how audio becomes text and how vector embeddings power semantic search.</li>
+        <li>IEEE-HKN Student Leadership Conference 2025: met engineers from Keysight and Texas Instruments and took part in the fox hunt hosted by Keysight.</li>
+      </ul>
+      <div class="gallery">
+        <figure><button type="button" data-src="photos/pcb-workshop-board.jpg" data-alt="IEEE LED-chaser PCB lit up, built during the workshop"><img src="photos/pcb-workshop-board.jpg" alt="IEEE LED-chaser PCB lit up, built during the workshop" loading="lazy"></button><figcaption>An LED-chaser board from the workshop, designed and soldered by students.</figcaption></figure>
+        <figure><button type="button" data-src="photos/pcb-workshop-bench.jpg" data-alt="Soldering stations set up for the PCB workshop"><img src="photos/pcb-workshop-bench.jpg" alt="Soldering stations set up for the PCB workshop" loading="lazy"></button><figcaption>Soldering bench after the session.</figcaption></figure>
+        <figure><button type="button" data-src="photos/hackathon-app.jpg" data-alt="Budget management web app dashboard from the IEEE-HKN hackathon"><img src="photos/hackathon-app.jpg" alt="Budget management web app dashboard from the IEEE-HKN hackathon" loading="lazy"></button><figcaption>Hackathon build: chapter budget dashboard.</figcaption></figure>
+        <figure><button type="button" data-src="photos/hackathon-certificate.jpg" data-alt="IEEE-HKN International Hackathon certificate of achievement"><img src="photos/hackathon-certificate.jpg" alt="IEEE-HKN International Hackathon certificate of achievement" loading="lazy"></button><figcaption>IEEE-HKN International Hackathon, 2nd place.</figcaption></figure>
+      </div>
+    </div>
+  </article>
+
   <article class="entry" id="more">
     <aside><div class="label">More work</div></aside>
     <div class="content grid2">
       <div><h3>Network measurement tools</h3><p>Ping and Traceroute written from scratch in Python: TTL hop discovery, ICMP Echo and Time Exceeded handling, packet timing. Routing analyzed in Wireshark. Graduate-level networks coursework.</p></div>
       <div><h3>Predictive-maintenance ML</h3><p>Six models on 10,000 industrial equipment records. XGBoost reached 0.975 ROC-AUC (80.0% precision, 76.5% recall) after threshold tuning. <a href="https://github.com/Samudra-Gargo/machine-learning-projects" target="_blank" rel="noopener">GitHub</a></p></div>
       <div><h3>Battery state-of-health research</h3><p>Undergraduate research in progress on machine-learning models for Li-ion battery state of health. <a href="https://github.com/Samudra-Gargo/Machine-Learning-Research" target="_blank" rel="noopener">GitHub</a></p></div>
-      <div><h3>IEEE-HKN Hackathon, 2nd place</h3><p>Led Team PNWers to build a budgeting web app with role-based access control, using React, Django and PostgreSQL. <a href="https://github.com/Samudra-Gargo/Power-Onward-Budget-Tracker" target="_blank" rel="noopener">GitHub</a></p></div>
+      <div><h3>IEEE-HKN International Hackathon, 2nd place</h3><p>About 10-day build of a reusable budget platform for IEEE-HKN chapters worldwide (React, Django, PostgreSQL). I owned the backend and database, and spent the last 48 hours tracing API failures and fixing schema drift between front and back end. <a href="https://github.com/Samudra-Gargo/Power-Onward-Budget-Tracker" target="_blank" rel="noopener">GitHub</a></p></div>
+    </div>
+  </article>
+
+
+  <article class="entry" id="certifications">
+    <aside><div class="label">Certifications</div></aside>
+    <div class="content">
+      <ul class="certs">
+        <li><b>BIM Fundamentals: Smarter Building Design &amp; Planning</b><span class="who">Coursera · Oct 2026</span></li>
+        <li><b>Siemens PLC and TIA Portal Essentials</b><span class="who">Packt · Sep 2026</span><small>S7-1200 ladder logic, timers, counters, comparisons, data handling.</small></li>
+        <li><b>Six Sigma Principles</b><span class="who">Kennesaw State University · Sep 2026</span></li>
+        <li><b>Electricity &amp; Electronics: Robotics, Learn by Building</b><span class="who">Udemy · Jul 2026</span><small>555 timers, op-amps, MOSFETs, H-bridges, PWM, servo control.</small></li>
+        <li><b>Embedded Systems Programming on ARM Cortex-M3/M4</b><span class="who">Udemy · Jun 2026</span><small>Round-robin scheduler, SysTick, PendSV/SVC context switching, OpenOCD/GDB.</small></li>
+        <li><b>Python Essential Training</b><span class="who">LinkedIn Learning · Feb 2026</span></li>
+        <li><b>Responsible Conduct of Research</b><span class="who">CITI Program · Feb 2025</span></li>
+      </ul>
     </div>
   </article>
 
@@ -234,6 +319,7 @@ dialog button{margin-top:8px;font:600 14px var(--body);background:var(--surface)
         <dt>Embedded</dt><dd>C, C++, ARM Assembly, STM32 (Cortex-M4), ESP32-S3, RTOS, interrupts, UART, I2S, Jetson Nano, Linux</dd>
         <dt>Digital design</dt><dd>SystemVerilog, Verilog, RTL design and simulation, RISC-V</dd>
         <dt>Test &amp; lab</dt><dd>Oscilloscope, digital multimeter, signal tracing, bring-up, functional and signal-level validation, root-cause debug, soldering</dd>
+        <dt>Industrial &amp; building</dt><dd>Siemens S7-1200 PLC, TIA Portal (STEP 7), ladder logic, interlocks and fault sequencing, BIM fundamentals (Revit), Six Sigma</dd>
         <dt>Software &amp; data</dt><dd>Python, pandas, scikit-learn, XGBoost, PyTorch, SQL, Git, Wireshark</dd>
         <dt>Leadership</dt><dd>President, EMAIL Club · Vice President, IEEE · Officer, IEEE-HKN · Electrical Lead, ASME Shell Eco-Marathon · Lab Assistant · Physics Supplemental Instruction Leader</dd>
       </dl>
@@ -249,10 +335,14 @@ dialog button{margin-top:8px;font:600 14px var(--body);background:var(--surface)
 <script>
 (function(){
   const d = document.getElementById('zoom'), zi = document.getElementById('zimg');
-  document.querySelectorAll('.sheets button').forEach(b => b.addEventListener('click', () => {
+  document.querySelectorAll('.sheets button, .gallery button').forEach(b => b.addEventListener('click', () => {
     zi.src = b.dataset.src; zi.alt = b.dataset.alt;
     if (d.showModal) d.showModal(); else d.setAttribute('open', '');
   }));
+  document.querySelectorAll('.gallery img').forEach(im => {
+    const hide = () => { im.closest('figure').hidden = true; const g = im.closest('.gallery'); if (![...g.children].some(f => !f.hidden)) g.hidden = true; };
+    if (im.complete && im.naturalWidth === 0) hide(); else im.addEventListener('error', hide);
+  });
   document.getElementById('zclose').addEventListener('click', () => d.close ? d.close() : d.removeAttribute('open'));
   d.addEventListener('click', e => { if (e.target === d) d.close(); });
   const btn = document.getElementById('copyem'), em = document.getElementById('em');
