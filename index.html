@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Samudra Gargo Bhattacharya | Electrical & Computer Engineering</title>
+<meta name="description" content="Electrical and computer engineering portfolio: 48 V inverter motor controller, STM32 and RTOS firmware, voice-controlled drone, RISC-V core. Purdue University Northwest, May 2027.">
+<meta property="og:title" content="Samudra Gargo Bhattacharya">
+<meta property="og:description" content="Power electronics, embedded firmware, and hardware test. Purdue University Northwest, May 2027.">
+<meta property="og:image" content="https://raw.githubusercontent.com/Samudra-Gargo/Motor_Controller/main/Shell_team.png">
+<meta property="og:type" content="website">
+<style>*,*::before,*::after{box-sizing:border-box}body{margin:0}img{max-width:100%}[hidden]{display:none!important}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800&family=Source+Sans+3:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: engineering notebook. Intro band, then one full-width project entry per build, each with evidence (schematics, data flow, numbers) and a repo link. Copper accent = power traces. */
+:root{
+  --bg:#f6f5f2; --surface:#ffffff; --fg:#1b1d1f; --muted:#5d6268; --line:#dedbd4;
+  --accent:#a8541f; --accent-soft:#f6e7dc; --ink2:#22414f;
+  --display:"Archivo",system-ui,"Segoe UI",sans-serif;
+  --body:"Source Sans 3",system-ui,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121416;--surface:#1a1d20;--fg:#e8e6e1;--muted:#a1a6ac;--line:#2c3034;--accent:#e08a52;--accent-soft:#3a2416;--ink2:#9cc3d3;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#121416;--surface:#1a1d20;--fg:#e8e6e1;--muted:#a1a6ac;--line:#2c3034;--accent:#e08a52;--accent-soft:#3a2416;--ink2:#9cc3d3;color-scheme:dark}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:17px;line-height:1.6}
+.wrap{max-width:1000px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+a{color:var(--accent)} a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:3px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0}
+p{margin:0;max-width:66ch}
+.label{font:500 12px var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+
+header.intro{padding-block:56px 40px;border-bottom:1px solid var(--line)}
+.intro .wrap{display:grid;gap:18px}
+.intro h1{font-size:clamp(34px,6vw,56px);font-weight:800;letter-spacing:-.025em;line-height:1.02}
+.intro .role{font:600 clamp(18px,2.4vw,22px) var(--body);color:var(--ink2)}
+.intro p.lede{font-size:18px;color:var(--muted)}
+.links{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;font-size:15px}
+.links a{font-weight:600;text-decoration:none;border-bottom:2px solid var(--accent-soft)}
+.links a:hover{border-color:var(--accent)}
+.copyrow{display:inline-flex;gap:8px;align-items:center;font-family:var(--mono);font-size:14px}
+.copyrow button{font:600 12px var(--body);border:1px solid var(--line);background:var(--surface);color:var(--fg);border-radius:5px;padding:3px 8px;cursor:pointer}
+.specs{display:flex;flex-wrap:wrap;gap:8px 28px;margin-top:6px}
+.spec{display:grid}
+.spec b{font:700 26px var(--display);color:var(--accent);font-variant-numeric:tabular-nums}
+.spec span{font-size:14px;color:var(--muted)}
+
+main .wrap{display:grid;gap:0}
+.entry{display:grid;grid-template-columns:200px 1fr;gap:24px;padding-block:44px;border-bottom:1px solid var(--line)}
+.entry>aside{display:grid;gap:6px;align-content:start}
+.entry>aside .when{font:500 13px var(--mono);color:var(--muted)}
+.entry>aside .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.tag{font:500 12px var(--mono);padding:2px 7px;border:1px solid var(--line);border-radius:4px;color:var(--muted);background:var(--surface)}
+.entry .content{display:grid;gap:16px;min-width:0}
+.entry h2{font-size:clamp(22px,3vw,28px);font-weight:700;letter-spacing:-.01em}
+.entry ul{margin:0;padding-left:20px;display:grid;gap:6px;max-width:68ch}
+.result{display:flex;gap:16px;align-items:baseline;flex-wrap:wrap;background:var(--accent-soft);border-radius:8px;padding:12px 16px}
+.result b{font:800 30px var(--display);color:var(--accent);font-variant-numeric:tabular-nums}
+.result span{color:var(--fg);max-width:52ch}
+.repo{font:600 15px var(--body)}
+figure{margin:0;display:grid;gap:6px}
+figcaption{font-size:14px;color:var(--muted)}
+.photo{border-radius:8px;width:100%;max-width:100%;height:auto;border:1px solid var(--line)}
+.sheets{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.sheets button{padding:0;border:1px solid var(--line);border-radius:6px;background:#fff;cursor:zoom-in;overflow:hidden;aspect-ratio:510/660;max-width:100%}
+.sheets img{width:100%;height:100%;object-fit:contain;display:block}
+.flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font:500 13px var(--mono)}
+.flow span.n{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:6px 10px}
+.flow span.a{color:var(--accent)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips code{font:500 12.5px var(--mono);background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:2px 7px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+.grid2 h3{font-size:17px;margin-bottom:4px}
+.skills dl{display:grid;grid-template-columns:200px 1fr;gap:8px 20px;margin:0}
+.skills dt{font-weight:700}
+.skills dd{margin:0;color:var(--muted)}
+footer{padding-block:40px 64px;color:var(--muted);font-size:15px}
+dialog{border:0;padding:0;background:transparent;max-width:min(92vw,900px)}
+dialog::backdrop{background:rgba(0,0,0,.7)}
+dialog img{width:100%;height:auto;background:#fff;border-radius:6px;display:block}
+dialog button{margin-top:8px;font:600 14px var(--body);background:var(--surface);color:var(--fg);border:1px solid var(--line);border-radius:6px;padding:6px 12px;cursor:pointer}
+@media (max-width:720px){.entry{grid-template-columns:1fr;gap:12px;padding-block:32px}.sheets{grid-template-columns:repeat(2,minmax(0,1fr))}.skills dl{grid-template-columns:1fr;gap:2px}.skills dd{margin-bottom:10px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+
+<header class="intro">
+  <div class="wrap">
+    <div class="label">Electrical &amp; Computer Engineering · Purdue University Northwest · May 2027</div>
+    <h1>Samudra Gargo Bhattacharya</h1>
+    <div class="role">Power electronics, embedded firmware, and hardware test</div>
+    <p class="lede">I build hardware and then prove it works on the bench: a 48 V inverter motor controller for a Shell Eco-Marathon car, bare-metal and RTOS firmware on STM32, a voice-controlled drone, and a RISC-V core in SystemVerilog.</p>
+    <div class="specs">
+      <div class="spec"><b>+35.4%</b><span>vehicle efficiency, 2024 → 2025</span></div>
+      <div class="spec"><b>15</b><span>bare-metal Cortex-M4 projects</span></div>
+      <div class="spec"><b>3.98</b><span>GPA, Dean's List, Honors</span></div>
+    </div>
+    <div class="links">
+      <a href="https://github.com/Samudra-Gargo" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/samudra-gargo-bhattacharya-8431aa2ba" target="_blank" rel="noopener">LinkedIn</a>
+      <span class="copyrow"><span id="em">samudra6289@gmail.com</span><button type="button" id="copyem">Copy</button></span>
+    </div>
+  </div>
+</header>
+
+<main><div class="wrap">
+
+  <article class="entry" id="motor-controller">
+    <aside>
+      <div class="when">Aug 2024 – present</div>
+      <div class="label">Electrical lead · ASME</div>
+      <div class="tags"><span class="tag">Altium</span><span class="tag">STM32</span><span class="tag">Gate drivers</span><span class="tag">RTOS</span></div>
+    </aside>
+    <div class="content">
+      <h2>48 V three-phase motor controller, Shell Eco-Marathon</h2>
+      <p>Our team builds an ultra-efficient car for Shell Eco-Marathon. I lead the electrical system, including the motor controller that turns the 48 V battery into three-phase drive for the brushless hub motor.</p>
+      <div class="result"><b>73.4 → 99.4 mi/kWh</b><span>Vehicle efficiency between the 2024 and 2025 competitions, after reworking MOSFET selection, gate drive and the power PCB.</span></div>
+      <ul>
+        <li>Designed the inverter: STM32 PWM, a discrete MOSFET power stage and gate-driver circuitry, plus the embedded firmware that runs it.</li>
+        <li>Laid out the high-current power PCBs in Altium, with attention to MOSFET routing, DC-link capacitance, grounding and gate-driver placement to reduce switching transients.</li>
+        <li>Found shoot-through on the oscilloscope and tuned PWM timing and dead time until switching was clean.</li>
+        <li>Drew brushed and brushless controller schematics and full electrical schematics for two vehicles: battery, contactor, controller, hub motor and throttle.</li>
+        <li>Now: running control tasks on an RTOS and adding Hall-effect current sensing for real-time current monitoring.</li>
+      </ul>
+      <figure>
+        <img class="photo" src="https://raw.githubusercontent.com/Samudra-Gargo/Motor_Controller/main/Shell_team.png" alt="The PNW Shell Eco-Marathon team posing with their black, teardrop-shaped car in the workshop" width="845" height="602">
+        <figcaption>The PNW Shell Eco-Marathon team and car.</figcaption>
+      </figure>
+      <figure>
+        <div class="sheets">
+          <button type="button" id="s1" data-src="brushless.png" data-alt="Brushless motor controller schematic"><img src="brushless.png" alt="Brushless motor controller schematic"></button>
+          <button type="button" id="s2" data-src="brushed.png" data-alt="Brushed motor controller schematic"><img src="brushed.png" alt="Brushed motor controller schematic"></button>
+          <button type="button" id="s3" data-src="vehicle-a.png" data-alt="Vehicle A electrical system schematic"><img src="vehicle-a.png" alt="Vehicle A electrical system schematic"></button>
+          <button type="button" id="s4" data-src="vehicle-b.png" data-alt="Vehicle B electrical system schematic"><img src="vehicle-b.png" alt="Vehicle B electrical system schematic"></button>
+        </div>
+        <figcaption>Schematic sheets, left to right: brushless controller, brushed controller, vehicle A system, vehicle B system. Tap to enlarge.</figcaption>
+      </figure>
+      <a class="repo" href="https://github.com/Samudra-Gargo/Motor_Controller" target="_blank" rel="noopener">Schematics on GitHub →</a>
+    </div>
+  </article>
+
+  <article class="entry" id="drone">
+    <aside>
+      <div class="when">Jan – Apr 2026</div>
+      <div class="label">Project</div>
+      <div class="tags"><span class="tag">Python</span><span class="tag">Linux</span><span class="tag">MAVSDK</span><span class="tag">UART</span></div>
+    </aside>
+    <div class="content">
+      <h2>Voice-controlled autonomous drone</h2>
+      <p>Say "take off, then move forward five meters and turn left," and the drone does it. Everything runs onboard a Jetson Nano that talks to a Pixhawk 6C flight controller.</p>
+      <div class="flow" aria-label="System data flow">
+        <span class="n">Bluetooth mic</span><span class="a">→</span><span class="n">Vosk speech recognition</span><span class="a">→</span><span class="n">Command parser</span><span class="a">→</span><span class="n">Command queue</span><span class="a">→</span><span class="n">MAVSDK</span><span class="a">→</span><span class="n">Pixhawk 6C (UART, 57600 baud)</span>
+      </div>
+      <ul>
+        <li>Speech recognition on 16 kHz mono audio in 100 ms frames, with a parser that pulls distances, angles and units out of chained commands ("then", "and", "next").</li>
+        <li>Flight control through MAVSDK Offboard mode, with checks on armed, airborne and GPS state before every command.</li>
+        <li>Async, millisecond-timestamped logging so the command loop never blocks.</li>
+        <li>Configured the Jetson's UART for the flight controller (serial console off, udev permissions). Diagnosed propulsion faults, replaced an ESC and repaired the motors.</li>
+      </ul>
+      <a class="repo" href="https://github.com/Samudra-Gargo/Intelligent-Drone" target="_blank" rel="noopener">Code on GitHub →</a>
+    </div>
+  </article>
+
+  <article class="entry" id="flo-labs">
+    <aside>
+      <div class="when">May – Aug 2025</div>
+      <div class="label">Internship · Flo Labs</div>
+      <div class="tags"><span class="tag">ESP32-S3</span><span class="tag">C/C++</span><span class="tag">I2S</span></div>
+    </aside>
+    <div class="content">
+      <h2>Embedded firmware for a voice-AI wearable</h2>
+      <ul>
+        <li>Wrote C/C++ firmware on ESP32-S3 for sensor acquisition and I2S audio capture, reaching about 90% functional and recognition accuracy in system testing.</li>
+        <li>Cut system response latency by 30% by optimizing peripheral interfaces, communication protocols and API-level code.</li>
+        <li>Validated signals through data monitoring and functional tests, and debugged timing and communication issues during integration.</li>
+      </ul>
+    </div>
+  </article>
+
+  <article class="entry" id="stm32">
+    <aside>
+      <div class="when">May – Aug 2026</div>
+      <div class="label">Project</div>
+      <div class="tags"><span class="tag">C</span><span class="tag">ARM Assembly</span><span class="tag">Cortex-M4</span></div>
+    </aside>
+    <div class="content">
+      <h2>Bare-metal STM32 Cortex-M4 firmware</h2>
+      <p>Fifteen small projects that each pin down one piece of how the processor really works, written without a vendor HAL.</p>
+      <div class="chips"><code>bare-metal</code><code>USART3-irq</code><code>interrupt-priority</code><code>exception-entry-exit</code><code>fault-gen</code><code>access-levels</code><code>operation-mode</code><code>bit-banding</code><code>stack</code><code>svc-number</code><code>svc-calculator</code><code>t-bit</code><code>inline</code><code>task-scheduler</code><code>task-scheduler-TCB</code></div>
+      <ul>
+        <li>Interrupt-driven USART3 driver, interrupt prioritization and deliberate fault generation to study exception entry and exit.</li>
+        <li>Two task schedulers, including a task-control-block scheduler with context switching.</li>
+      </ul>
+      <a class="repo" href="https://github.com/Samudra-Gargo/stm32-cortex-m4-projects" target="_blank" rel="noopener">Code on GitHub →</a>
+    </div>
+  </article>
+
+  <article class="entry" id="riscv">
+    <aside>
+      <div class="when">Aug 2026 – present</div>
+      <div class="label">Project</div>
+      <div class="tags"><span class="tag">SystemVerilog</span><span class="tag">RTL</span></div>
+    </aside>
+    <div class="content">
+      <h2>RISC-V 32-bit single-cycle processor</h2>
+      <div class="flow" aria-label="Datapath">
+        <span class="n">PC</span><span class="a">→</span><span class="n">Instruction memory</span><span class="a">→</span><span class="n">Decoder + control</span><span class="a">→</span><span class="n">Register file</span><span class="a">→</span><span class="n">ALU</span><span class="a">→</span><span class="n">Data memory / write-back</span>
+      </div>
+      <ul>
+        <li>Supports R-type and I-type arithmetic, load/store, branch, LUI and jump instructions.</li>
+        <li>Verified with RTL simulation, waveform analysis and instruction-level tests.</li>
+      </ul>
+    </div>
+  </article>
+
+  <article class="entry" id="more">
+    <aside><div class="label">More work</div></aside>
+    <div class="content grid2">
+      <div><h3>Network measurement tools</h3><p>Ping and Traceroute written from scratch in Python: TTL hop discovery, ICMP Echo and Time Exceeded handling, packet timing. Routing analyzed in Wireshark. Graduate-level networks coursework.</p></div>
+      <div><h3>Predictive-maintenance ML</h3><p>Six models on 10,000 industrial equipment records. XGBoost reached 0.975 ROC-AUC (80.0% precision, 76.5% recall) after threshold tuning. <a href="https://github.com/Samudra-Gargo/machine-learning-projects" target="_blank" rel="noopener">GitHub</a></p></div>
+      <div><h3>Battery state-of-health research</h3><p>Undergraduate research in progress on machine-learning models for Li-ion battery state of health. <a href="https://github.com/Samudra-Gargo/Machine-Learning-Research" target="_blank" rel="noopener">GitHub</a></p></div>
+      <div><h3>IEEE-HKN Hackathon, 2nd place</h3><p>Led Team PNWers to build a budgeting web app with role-based access control, using React, Django and PostgreSQL. <a href="https://github.com/Samudra-Gargo/Power-Onward-Budget-Tracker" target="_blank" rel="noopener">GitHub</a></p></div>
+    </div>
+  </article>
+
+  <article class="entry skills" id="skills">
+    <aside><div class="label">Skills</div></aside>
+    <div class="content">
+      <dl>
+        <dt>Power &amp; hardware</dt><dd>Three-phase inverters, MOSFET power stages, gate drivers, PWM and dead time, Hall-effect sensing, Altium, KiCad, LTspice, Multisim</dd>
+        <dt>Embedded</dt><dd>C, C++, ARM Assembly, STM32 (Cortex-M4), ESP32-S3, RTOS, interrupts, UART, I2S, Jetson Nano, Linux</dd>
+        <dt>Digital design</dt><dd>SystemVerilog, Verilog, RTL design and simulation, RISC-V</dd>
+        <dt>Test &amp; lab</dt><dd>Oscilloscope, digital multimeter, signal tracing, bring-up, functional and signal-level validation, root-cause debug, soldering</dd>
+        <dt>Software &amp; data</dt><dd>Python, pandas, scikit-learn, XGBoost, PyTorch, SQL, Git, Wireshark</dd>
+        <dt>Leadership</dt><dd>President, EMAIL Club · Vice President, IEEE · Officer, IEEE-HKN · Electrical Lead, ASME Shell Eco-Marathon · Lab Assistant · Physics Supplemental Instruction Leader</dd>
+      </dl>
+    </div>
+  </article>
+
+</div></main>
+
+<footer><div class="wrap">Graduating May 2027 and looking for internships and new-grad roles in power electronics, embedded firmware, and hardware test and validation. Open to relocation.</div></footer>
+
+<dialog id="zoom"><img id="zimg" src="brushless.png" alt=""><button type="button" id="zclose">Close</button></dialog>
+
+<script>
+(function(){
+  const d = document.getElementById('zoom'), zi = document.getElementById('zimg');
+  document.querySelectorAll('.sheets button').forEach(b => b.addEventListener('click', () => {
+    zi.src = b.dataset.src; zi.alt = b.dataset.alt;
+    if (d.showModal) d.showModal(); else d.setAttribute('open', '');
+  }));
+  document.getElementById('zclose').addEventListener('click', () => d.close ? d.close() : d.removeAttribute('open'));
+  d.addEventListener('click', e => { if (e.target === d) d.close(); });
+  const btn = document.getElementById('copyem'), em = document.getElementById('em');
+  btn.addEventListener('click', () => {
+    const sel = () => { const r = document.createRange(); r.selectNodeContents(em); const s = getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent = 'Selected'; };
+    try { navigator.clipboard.writeText(em.textContent).then(() => { btn.textContent = 'Copied'; setTimeout(() => btn.textContent = 'Copy', 1500); }, sel); } catch (e) { sel(); }
+  });
+})();
+</script>
+
+</body>
+</html>
