@@ -1,0 +1,41 @@
+name: fetch-photos
+on:
+  push:
+    paths: ['.github/workflows/fetch-photos.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download and resize
+        run: |
+          set -e
+          mkdir -p photos
+          while read -r name url; do
+            curl -fsSL -A "Mozilla/5.0" -o "/tmp/$name" "$url"
+            convert "/tmp/$name" -auto-orient -resize '1200x1200>' -strip -quality 82 "photos/$name.jpg"
+            identify "photos/$name.jpg"
+          done <<'LIST'
+          days-of-discovery https://media.licdn.com/dms/image/v2/D5622AQEKDeONKrS4UA/feedshare-shrink_800/B56aEAK0fIIcAc-/0/1791004199923?e=1796860800&v=beta&t=2HAoTjNC-fxVz71W6Gg9345ek9T3lVDpRD2oIxayrAk
+          controller-in-vehicle https://media.licdn.com/dms/image/v2/D5622AQFu_NXasCLtIA/feedshare-shrink_480/B56aEAK0bYGgAg-/0/1791004200285?e=1796860800&v=beta&t=pd2aU8vzBOtZ410kh4jPoCITnKCzRSqg0IyErNIjNNI
+          controller-heatsink https://media.licdn.com/dms/image/v2/D5622AQE6Ti27vpeYdw/feedshare-shrink_480/B56aEAIbw0IQAk-/0/1791003575021?e=1796860800&v=beta&t=PpsVU3Z1UK4ep6BPofQJCjlVS9-FLXCFKI3KGClhRFM
+          gate-driver-test https://media.licdn.com/dms/image/v2/D5622AQGSHyl04LSk1g/feedshare-shrink_800/B56Zwc9i9nJoAg-/0/1770012422529?e=1796860800&v=beta&t=-kxu7MIhA1Gj_J2q7qJWacaNfarbYg9OJHFgGx6btwA
+          gate-driver-scope https://media.licdn.com/dms/image/v2/D5622AQFtNaMp6wq7wA/feedshare-shrink_480/B56Zwc9i_KHIAs-/0/1770012422569?e=1796860800&v=beta&t=WLw0H77nihx1h8gL4scQ1OiOXGtRVFznjCdyucWmeYM
+          pcb-workshop-board https://media.licdn.com/dms/image/v2/D5622AQEeeYIQqw0EMQ/feedshare-shrink_800/B56ZsbJ2n4JUAg-/0/1765687128195?e=1796860800&v=beta&t=_rbtBir_QugZy7HX9JzSQRnTSiqYNJaEv7Ge-MvUQQ0
+          pcb-workshop-bench https://media.licdn.com/dms/image/v2/D5622AQHjl8fsoOAjXg/feedshare-shrink_480/B56ZsbJ2onHsAc-/0/1765687128612?e=1796860800&v=beta&t=SPEIjxMgWuddSw7aiFXEdx6p_golHZc8d6ei4kz63F0
+          hackathon-certificate https://media.licdn.com/dms/image/v2/D5622AQGQ7MkQGIhPAQ/feedshare-shrink_1280/B56ZsaNixtJoAs-/0/1765671330676?e=1796860800&v=beta&t=SNqE1Cgj-jBouBqJVBKLlY2aBliRfuBd7Go3EasswUs
+          hackathon-app https://media.licdn.com/dms/image/v2/D5622AQH6XZa0JfNyTQ/feedshare-shrink_480/B56ZsaNiwTIkAc-/0/1765671317897?e=1796860800&v=beta&t=DDdWGbMjmfBs2e-v7KnmOGWZRG7Dy3YrghdL73h4ISI
+          wattmeter-install https://media.licdn.com/dms/image/v2/D5622AQGemlv1liujHw/feedshare-image-high-res/B56Zqp7i3UKAAo-/0/1763787556682?e=1796860800&v=beta&t=BFl1f69pVAH9d2F0kNzk8dct-d_JP2hKSS1uJDrJ328
+          team-vehicle https://media.licdn.com/dms/image/v2/D5622AQGE8ZD4v19Vyg/feedshare-shrink_800/B56ZnwAdw1J4Ag-/0/1760668292472?e=1796860800&v=beta&t=uYGSXcSWU_z-s_8_Cc88nzIjPbkTTSeTAgTyxN1qWGk
+          controller-prototype https://media.licdn.com/dms/image/v2/D5622AQEy-0xpf136Bw/feedshare-shrink_1280/B56ZnwAdxfJwAs-/0/1760668290053?e=1796860800&v=beta&t=aBcAYbKCOwijiPm8ULRYozuB4kZNmP_Kb5cGo6DsZfE
+          LIST
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add photos
+          git commit -m "Add project photos from LinkedIn posts"
+          git push
