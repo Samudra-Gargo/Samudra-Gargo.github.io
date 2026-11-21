@@ -1,0 +1,38 @@
+name: get-photos-2
+on:
+  push:
+    paths: ['.github/workflows/get-photos-2.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download and resize
+        run: |
+          set -e
+          mkdir -p photos
+          while read -r name url; do
+            curl -fsSL -A "Mozilla/5.0" -o "photos/$name.jpg" "$url"
+            ls -l "photos/$name.jpg"
+          done <<'LIST'
+          plc-tia-portal https://media.licdn.com/dms/image/v2/D5622AQFheos_aUGKuA/feedshare-image-high-res/B56aEALd7ZIQAU-/0/1791004368883?e=1796860800&v=beta&t=k8DPSIHrnB49AXhJ5rmtvrmhcLpnhuqX2tyIqwm572o
+          cert-siemens-plc https://media.licdn.com/dms/image/v2/D562DAQFzhNqLvh8qKQ/profile-treasury-document-cover-images_480/B56aC85M58KMA0-/0/1789875508660?e=1795842000&v=beta&t=1O6pbDD9gAt1e-6UAg514gD06pwaI46dktrRO_WA6N8
+          cert-bim https://media.licdn.com/dms/image/v2/D562DAQHALfMhgaDZmQ/profile-treasury-document-cover-images_480/B56aFS22WpJwA4-/0/1792391473603?e=1795842000&v=beta&t=Pa0vden7w9DtB98Wg3PMZCGDjOrd8VL95J_oOki38nk
+          cert-six-sigma https://media.licdn.com/dms/image/v2/D562DAQEi0MowMyo36A/profile-treasury-document-cover-images_480/B56aC7zgW5HkA4-/0/1789857237420?e=1795842000&v=beta&t=RsJiCdU3bUzDwYEzax9HAEqXCwQdIPYryLMgq7Xt_5o
+          cert-robotics-electronics https://media.licdn.com/dms/image/v2/D4E2DAQEyEd72TN0n6w/profile-treasury-document-cover-images_480/B4EaCD67LAH8A4-/0/1788919657906?e=1795842000&v=beta&t=w_zSa_uUv3Vs36uP5KC84Cp1WYbVutXYMhH7BV4MrZA
+          cert-arm-cortex-m https://media.licdn.com/dms/image/v2/D4E2DAQFh2muj5FMucA/profile-treasury-document-cover-images_480/B4EaCD5NNdIUA8-/0/1788919207568?e=1795842000&v=beta&t=x92DlUipfce3vbh-JLM1WcLcCsDcwiYOXYxVlh0A0Ks
+          ev-grand-prix-team https://media.licdn.com/dms/image/v2/D562DAQExCnYttgXHTg/profile-treasury-image-shrink_480_480/B56ZbkSNztHgAM-/0/1747586703818?e=1795842000&v=beta&t=v3Rfe_WQFQK1N2aeR7zduPguv7gXI1FTlSfGhjTa6w0
+          ev-grand-prix-race https://media.licdn.com/dms/image/v2/D562DAQEZk8DJxERhpA/profile-treasury-image-shrink_480_480/B56ZbkSkpCGoAM-/0/1747586797408?e=1795842000&v=beta&t=hjDzPPUKiClY28KUXucgc0W8HcjjlRcxYbD3sM5RhT8
+          fpga-reaction-game https://media.licdn.com/dms/image/v2/D562DAQGnGeraTfPmow/profile-treasury-image-shrink_480_480/B56ZbkYja8G4AM-/0/1747588364422?e=1795842000&v=beta&t=cU7xY7rw-3gdM1opX0KL5C-pTLP4zm6QMRauaO3OLDI
+          pcb-workshop-group https://media.licdn.com/dms/image/v2/D562DAQE1SiDWXKGJ0g/profile-treasury-image-shrink_480_480/B56ZbkXJckG4AM-/0/1747587995986?e=1795842000&v=beta&t=9knVwHJ_p8NO68BIkRA_ANJpaRfhg1a2-aMI_kY_qZw
+          LIST
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add photos
+          git commit -m "Add certificate and project photos from LinkedIn"
+          git push
