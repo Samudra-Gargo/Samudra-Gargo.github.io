@@ -62,6 +62,9 @@ main .wrap{display:grid;gap:0}
 figure{margin:0;display:grid;gap:6px}
 figcaption{font-size:14px;color:var(--muted)}
 .photo{border-radius:8px;width:100%;max-width:100%;height:auto;border:1px solid var(--line)}
+.band{border-top:2px solid var(--accent);padding-block:28px 4px;display:grid;gap:6px}
+.band-title{font-size:clamp(24px,3.4vw,32px);margin:0;text-wrap:balance}
+.band-lede{color:var(--muted);margin:0;max-width:62ch}
 .gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
 .gallery figure{gap:6px}
 .gallery button{padding:0;border:1px solid var(--line);border-radius:8px;background:var(--surface);cursor:zoom-in;overflow:hidden;aspect-ratio:4/3;max-width:100%;display:block;width:100%}
@@ -290,26 +293,80 @@ dialog button{margin-top:8px;font:600 14px var(--body);background:var(--surface)
     </div>
   </article>
 
-  <article class="entry" id="teaching">
+  <section class="band" id="teaching" aria-labelledby="teaching-h">
+    <h2 class="band-title" id="teaching-h">Teaching, tutoring &amp; outreach</h2>
+    <p class="band-lede">Alongside the engineering work, I spend a lot of my week helping other people learn to build and debug things.</p>
+  </section>
+
+  <article class="entry" id="tutoring">
     <aside>
-      <div class="when">2025 – 2026</div>
-      <div class="label">IEEE · IEEE-HKN</div>
-      <div class="tags"><span class="tag">KiCad</span><span class="tag">Teaching</span><span class="tag">Outreach</span></div>
+      <div class="when">Aug 2024 – Present</div>
+      <div class="label">Supplemental Instruction · PNW</div>
+      <div class="tags"><span class="tag">Mechanics</span><span class="tag">Physics II</span><span class="tag">Group sessions</span></div>
     </aside>
     <div class="content">
-      <h2>Teaching hardware: PCB workshop and STEM outreach</h2>
+      <h2>Supplemental Instruction tutor: Mechanics and Physics</h2>
       <ul>
-        <li>Ran a hands-on KiCad workshop: why PCBs and layers matter, schematic capture, layout, Gerber generation and validation, and packaging files for fabrication. Students who stayed soldered and took home a working LED-chaser board.</li>
-        <li>At an IEEE STEM AI outreach event, demoed speech-to-text with OpenAI Whisper for high school students and walked through how audio becomes text and how vector embeddings power semantic search.</li>
-        <li>IEEE-HKN Student Leadership Conference 2025: met engineers from Keysight and Texas Instruments and took part in the fox hunt hosted by Keysight.</li>
+        <li>Lead weekly group sessions, 2–3 a week, plus one-on-one help in Mechanics and Physics II (Electricity &amp; Optics).</li>
+        <li>Run structured exam reviews that break multi-step problems into small, checkable steps, so students learn the method rather than just the answer.</li>
+        <li>Over two-plus years, this has become how I explain anything technical: start from what the person already knows, then build one step at a time.</li>
+      </ul>
+    </div>
+  </article>
+
+  <article class="entry" id="design-studio">
+    <aside>
+      <div class="when">Nov 2025 – Present</div>
+      <div class="label">Design Studio · PNW</div>
+      <div class="tags"><span class="tag">3D printers</span><span class="tag">Lab safety</span><span class="tag">Debugging</span></div>
+    </aside>
+    <div class="content">
+      <h2>Design Studio lab assistant</h2>
+      <ul>
+        <li>Keep the studio running day to day: 3D printers, laser cutters, soldering stations and hand tools.</li>
+        <li>Train students on safe, correct equipment use and enforce lab safety procedures.</li>
+        <li>Debug students’ electronics (wiring, continuity, power problems): <b>10+</b> faulty circuits traced and fixed, and soldering and bring-up support for <b>25+</b> student boards.</li>
+        <li>Help students turn an idea into something buildable by choosing the right tool, material and process.</li>
+      </ul>
+    </div>
+  </article>
+
+  <article class="entry" id="workshops">
+    <aside>
+      <div class="when">2024 – 2025</div>
+      <div class="label">IEEE · IEEE-HKN</div>
+      <div class="tags"><span class="tag">KiCad</span><span class="tag">Soldering</span><span class="tag">Hands-on</span></div>
+    </aside>
+    <div class="content">
+      <h2>Workshops hosted: PCB design from zero to a working board</h2>
+      <p>I designed an LED chaser disc as a teaching board, in KiCad with FreeRouting, and then ran it as a hands-on IEEE workshop for students with no PCB experience.</p>
+      <ul>
+        <li>Covered why boards need layers, installing and setting up KiCad, schematic capture, layout, generating and checking Gerber files, and packaging a fabrication-ready zip.</li>
+        <li>Students who stayed soldered their own boards and took home a working LED chaser they had built themselves.</li>
+        <li>Debugging live in front of a room forced me to explain each step clearly, and showed me gaps in my own understanding that I then filled.</li>
       </ul>
       <div class="gallery">
-        <figure><button type="button" data-src="photos/pcb-workshop-board.jpg" data-alt="IEEE LED-chaser PCB lit up, built during the workshop"><img src="photos/pcb-workshop-board.jpg" alt="IEEE LED-chaser PCB lit up, built during the workshop" loading="lazy"></button><figcaption>An LED-chaser board from the workshop, designed and soldered by students.</figcaption></figure>
-        <figure><button type="button" data-src="photos/pcb-workshop-group.jpg" data-alt="Students holding their LED-chaser boards at the IEEE PCB workshop"><img src="photos/pcb-workshop-group.jpg" alt="Students holding their LED-chaser boards at the IEEE PCB workshop" loading="lazy"></button><figcaption>IEEE LED-chaser disc workshop: designed in KiCad, routed with FreeRouting.</figcaption></figure>
-        <figure><button type="button" data-src="photos/pcb-workshop-bench.jpg" data-alt="Soldering stations set up for the PCB workshop"><img src="photos/pcb-workshop-bench.jpg" alt="Soldering stations set up for the PCB workshop" loading="lazy"></button><figcaption>Soldering bench after the session.</figcaption></figure>
-        <figure><button type="button" data-src="photos/hackathon-app.jpg" data-alt="Budget management web app dashboard from the IEEE-HKN hackathon"><img src="photos/hackathon-app.jpg" alt="Budget management web app dashboard from the IEEE-HKN hackathon" loading="lazy"></button><figcaption>Hackathon build: chapter budget dashboard.</figcaption></figure>
-        <figure><button type="button" data-src="photos/hackathon-certificate.jpg" data-alt="IEEE-HKN International Hackathon certificate of achievement"><img src="photos/hackathon-certificate.jpg" alt="IEEE-HKN International Hackathon certificate of achievement" loading="lazy"></button><figcaption>IEEE-HKN International Hackathon, 2nd place.</figcaption></figure>
+        <figure><button type="button" data-src="photos/pcb-workshop-group.jpg" data-alt="Students holding their LED-chaser boards at the IEEE PCB workshop"><img src="photos/pcb-workshop-group.jpg" alt="Students holding their LED-chaser boards at the IEEE PCB workshop" loading="lazy"></button><figcaption>The workshop group with their boards.</figcaption></figure>
+        <figure><button type="button" data-src="photos/pcb-workshop-board.jpg" data-alt="IEEE LED-chaser PCB lit up, built during the workshop"><img src="photos/pcb-workshop-board.jpg" alt="IEEE LED-chaser PCB lit up, built during the workshop" loading="lazy"></button><figcaption>A finished LED-chaser disc.</figcaption></figure>
+        <figure><button type="button" data-src="photos/pcb-workshop-bench.jpg" data-alt="Soldering stations set up for the PCB workshop"><img src="photos/pcb-workshop-bench.jpg" alt="Soldering stations set up for the PCB workshop" loading="lazy"></button><figcaption>The soldering bench after the session.</figcaption></figure>
       </div>
+    </div>
+  </article>
+
+  <article class="entry" id="outreach">
+    <aside>
+      <div class="when">2025</div>
+      <div class="label">IEEE · IEEE-HKN · EMAIL Club</div>
+      <div class="tags"><span class="tag">STEM outreach</span><span class="tag">AI</span><span class="tag">Leadership</span></div>
+    </aside>
+    <div class="content">
+      <h2>STEM outreach and student leadership</h2>
+      <ul>
+        <li><b>IEEE STEM AI outreach:</b> showed high school students a live speech-to-text demo with OpenAI Whisper, then walked through how audio becomes text, what vector embeddings are and how they make semantic search work. The best part was students asking how and why, not just whether AI can do something.</li>
+        <li><b>Days of Discovery:</b> presented the motor controller and drone research to faculty, students and visitors at Purdue Northwest’s research showcase.</li>
+        <li><b>IEEE-HKN Student Leadership Conference 2025:</b> met students from across the country and abroad, talked with engineers from Keysight and Texas Instruments, and took part in Keysight’s fox hunt.</li>
+        <li><b>Leadership:</b> Vice President of IEEE, officer of IEEE-HKN, and President of Engineering Minds with AI Learning (EMAIL Club).</li>
+      </ul>
     </div>
   </article>
 
@@ -321,7 +378,7 @@ dialog button{margin-top:8px;font:600 14px var(--body);background:var(--surface)
       <div><h3>Network measurement tools</h3><p>Ping and Traceroute written from scratch in Python: TTL hop discovery, ICMP Echo and Time Exceeded handling, packet timing. Routing analyzed in Wireshark. Graduate-level networks coursework.</p></div>
       <div><h3>Predictive-maintenance ML</h3><p>Six models on 10,000 industrial equipment records. XGBoost reached 0.975 ROC-AUC (80.0% precision, 76.5% recall) after threshold tuning. <a href="https://github.com/Samudra-Gargo/machine-learning-projects" target="_blank" rel="noopener">GitHub</a></p></div>
       <div><h3>Battery state-of-health research</h3><p>Undergraduate research in progress on machine-learning models for Li-ion battery state of health. <a href="https://github.com/Samudra-Gargo/Machine-Learning-Research" target="_blank" rel="noopener">GitHub</a></p></div>
-      <div><h3>IEEE-HKN International Hackathon, 2nd place</h3><p>About 10-day build of a reusable budget platform for IEEE-HKN chapters worldwide (React, Django, PostgreSQL). I owned the backend and database, and spent the last 48 hours tracing API failures and fixing schema drift between front and back end. <a href="https://github.com/Samudra-Gargo/Power-Onward-Budget-Tracker" target="_blank" rel="noopener">GitHub</a></p></div>
+      <div><h3>IEEE-HKN International Hackathon, 2nd place</h3><p>About 10-day build of a reusable budget platform for IEEE-HKN chapters worldwide (React, Django, PostgreSQL). I owned the backend and database, and spent the last 48 hours tracing API failures and fixing schema drift between front and back end. <a href="https://github.com/Samudra-Gargo/Power-Onward-Budget-Tracker" target="_blank" rel="noopener">GitHub</a></p><div class="gallery" style="margin-top:8px"><figure><button type="button" data-src="photos/hackathon-app.jpg" data-alt="Budget management web app dashboard from the IEEE-HKN hackathon"><img src="photos/hackathon-app.jpg" alt="Budget management web app dashboard from the IEEE-HKN hackathon" loading="lazy"></button><figcaption>Chapter budget dashboard.</figcaption></figure><figure><button type="button" data-src="photos/hackathon-certificate.jpg" data-alt="IEEE-HKN International Hackathon certificate of achievement"><img src="photos/hackathon-certificate.jpg" alt="IEEE-HKN International Hackathon certificate of achievement" loading="lazy"></button><figcaption>2nd place certificate.</figcaption></figure></div></div>
     </div>
   </article>
 
